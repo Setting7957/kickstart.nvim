@@ -10,6 +10,7 @@ vim.g.have_nerd_font = true
 -- [[ Setting options ]]
 
 -- Set tab and indent size to 4
+-- May be overriden by the tpope/vim-sleuth plugin
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
@@ -79,7 +80,8 @@ vim.opt.inccommand = 'split'
 vim.opt.cursorline = true
 
 -- [[ Basic Keymaps ]]
-vim.keymap.set('n', '<Leader>op', 'o<Esc>p', { desc = '' })
+-- vim.keymap.set('n', '<Leader>op', 'o<Esc>p', { desc = 'Paste from default register and add newline above' })
+-- vim.keymap.set('n', '<Leader>o<C-p>', 'o<Esc>"+p', { desc = 'Paste from system clipboard and add newline above' })
 
 vim.keymap.set('n', '-', '$', { desc = 'Go to the end of the line in normal mode' })
 vim.keymap.set('v', '-', '$', { desc = 'Go to the end of the line in visual mode' })
@@ -129,7 +131,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
@@ -145,29 +147,27 @@ vim.opt.rtp:prepend(lazypath)
 --  To check the current status of your plugins, run
 --    :Lazy
 --
---  You can press `?` in this menu for help. Use `:q` to close the window
+--  You can press `?` in this menu for help. Use `q` to close the window
 --
 --  To update plugins you can run
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- Surround words with any character
+  'tpope/vim-surround',
+  -- Case-sensitive search and replace, coerce strings to {camel,snake,pascal}case
+  'tpope/vim-abolish',
 
-  -- NOTE: Plugins can also be added by using a table,
-  -- with the first argument being the link and the following
-  -- keys can be used to configure plugin behavior/loading/etc.
-  --
-  -- Use `opts = {}` to force a plugin to be loaded.
+  -- Use `opts = {}` to force a plugin to be loaded when Neovim opens.
   --
 
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
   --
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
+  { -- Adds git related signs to the gutter, as well as utilities for managing changes with Git
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {
