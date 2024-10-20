@@ -316,6 +316,7 @@ require('lazy').setup({
           --   initial_mode: normal  -- vim mode in which telescope starts. Default: insert
         },
         -- pickers = {}
+        -- Configuration for extensions. The extensions themselves are enabled further below
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -327,7 +328,7 @@ require('lazy').setup({
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
 
-      -- See `:help telescope.builtin`
+      -- Set telescope keymaps
       local builtin = require 'telescope.builtin'
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
@@ -339,8 +340,16 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+      vim.keymap.set('n', '<leader>sy', builtin.symbols, { desc = '[S]earch s[y]mbols' })
 
       -- Slightly advanced example of overriding default behavior and theme
+      -- Here, <leader>/ is set as the normal mode keymap, and its callback
+      -- calls builtin.current_buffer_fuzzy_find with configuration defined by
+      -- require('telescope.themes').get_dropdown.
+      -- get_dropdown is a function that accepts a table as its only argument;
+      -- the parentheses are optional in those cases; see https://www.lua.org/pil/5.html.
+      -- get_dropdown's table is an instance of Telescope configuration as defined by
+      -- the opts.defaults table in :h telescope.setup().
       vim.keymap.set('n', '<leader>/', function()
         -- You can pass additional configuration to Telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -348,6 +357,18 @@ require('lazy').setup({
           previewer = false,
         })
       end, { desc = '[/] Fuzzily search in current buffer' })
+
+      -- Set command history to be similar in layout to regular q:
+      vim.keymap.set('n', '<leader>sc', function()
+        builtin.command_history(require('telescope.themes').get_dropdown {
+          previewer = false,
+          sorting_strategy = 'descending',
+          layout_strategy = 'bottom_pane',
+          layout_config = {
+            prompt_position = 'bottom',
+          },
+        })
+      end, { desc = '[S]earch [C]ommand history' })
 
       -- It's also possible to pass additional configuration options.
       --  See `:help telescope.builtin.live_grep()` for information about particular keys
