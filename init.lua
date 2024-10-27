@@ -263,7 +263,7 @@ require('lazy').setup({
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
-    branch = '0.1.x',
+    branch = '0.1.x', -- release branch
     dependencies = {
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for installation instructions
@@ -396,7 +396,7 @@ require('lazy').setup({
     -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
     'folke/lazydev.nvim',
-    ft = 'lua',
+    ft = 'lua', -- load only on lua files
     opts = {
       library = {
         -- Load luvit types when the `vim.uv` word is found
@@ -415,10 +415,14 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
+      -- This plugin is the source of the messages in the lower-right corner of the editor
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- Allows extra capabilities provided by nvim-cmp
+      -- By default, Neovim as an LSP client does not provide all LSP capabilities.
+      -- This plugin adds more
+      -- nvim-cmp itself is the autocompletion engine
       'hrsh7th/cmp-nvim-lsp',
     },
     config = function()
@@ -486,7 +490,7 @@ require('lazy').setup({
           map('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
 
           -- Fuzzy find all the symbols in your current workspace.
-          --  Similar to document symbols, except searches over your entire project.
+          --  Similar to document symbols, except searches over your entire workspace.
           map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
           -- Rename the variable under your cursor.
@@ -834,6 +838,8 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      --  Consider mini.sessions for session management
+      --  and mini.comment for keymaps to comment out lines
     end,
   },
   { -- Highlight, edit, and navigate code
