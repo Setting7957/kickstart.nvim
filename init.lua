@@ -154,9 +154,13 @@ vim.opt.rtp:prepend(lazypath)
 --
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- Detect tabstop and shiftwidth automatically
+  -- Enable only when necessary; this messes up the
+  -- default indentation rules defined in this file
+  --'tpope/vim-sleuth',
   -- Surround words with any character
-  'tpope/vim-surround',
+  -- Obsoleted by echasnovski/mini.surround
+  -- 'tpope/vim-surround',
   -- Case-sensitive search and replace, coerce strings to {camel,snake,pascal}case
   'tpope/vim-abolish',
 
