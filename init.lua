@@ -345,6 +345,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>sy', builtin.symbols, { desc = '[S]earch s[y]mbols' })
+      vim.keymap.set('n', '<leader>so', builtin.vim_options, { desc = '[S]earch vim [o]ptions' })
 
       -- Slightly advanced example of overriding default behavior and theme
       -- Here, <leader>/ is set as the normal mode keymap, and its callback
