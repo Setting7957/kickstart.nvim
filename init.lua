@@ -803,23 +803,31 @@ require('lazy').setup({
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
-  { -- Collection of various small independent plugins/modules
+  { -- Collection of various small independent plugins/modules.
+    -- Only those explicitly require()'d will be installed
     'echasnovski/mini.nvim',
+    branch = 'stable',
     config = function()
       -- Better Around/Inside textobjects
-      --
-      -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
-      --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
-      --  - ci'  - [C]hange [I]nside [']quote
-      require('mini.ai').setup { n_lines = 500 }
+      -- Documentation in h: MiniAi
+      -- See h: MiniAi-textobject-builtin for the list of supported text objects
+      require('mini.ai').setup { n_lines = 1 }
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
-      --
-      -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
-      -- - sd'   - [S]urround [D]elete [']quotes
-      -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      require('mini.surround').setup {
+        -- Not a fan of the default mappings slowing down the commonly-used s command.
+        -- Make them at least require a <Leader> key stroke
+        mappings = {
+          add = '<Leader>ca', -- [c]over around
+          delete = '<Leader>cd', -- [c]over [d]elete
+          replace = '<Leader>cr', -- [c]over [r]eplace
+          find = '<Leader>cf', -- [c]over [f]ind
+          find_left = '<Leader>cF', -- [c]over [F]ind left
+          highlight = '<Leader>ch', -- [c]over [h]ighlight
+          update_n_lines = '<Leader>cn', -- [c]over update [n] lines
+        },
+        n_lines = 1,
+      }
 
       -- Simple and easy statusline.
       --  You could remove this setup call if you don't like it,
