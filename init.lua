@@ -1,3 +1,5 @@
+-- basic config; the files can be found in the ./lua directory
+-- see :h lua-guide-modules
 require 'basic-options'
 require 'basic-keymaps'
 require 'basic-autocommands'
@@ -793,4 +795,4 @@ require('lazy').setup({
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: ts=2 sts=2 sw=2 et path+=./lua
