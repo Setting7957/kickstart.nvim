@@ -1,8 +1,8 @@
 -- basic config; the files can be found in the ./lua directory
 -- see :h lua-guide-modules
-require 'basic-options'
-require 'basic-keymaps'
-require 'basic-autocommands'
+require 'core.basic-options'
+require 'core.basic-keymaps'
+require 'core.basic-autocommands'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 -- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
@@ -14,7 +14,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     error('Error cloning lazy.nvim:\n' .. out)
   end
 end ---@diagnostic disable-next-line: undefined-field
-vim.opt.rtp:prepend(lazypath)
+vim.opt.rtp:prepend(lazypath) -- rtp = runtimepath
 
 -- [[ Configure and install plugins ]]
 --
