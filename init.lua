@@ -27,6 +27,7 @@ vim.opt.rtp:prepend(lazypath) -- rtp = runtimepath
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
+-- Reminder: enable the plugin update checker (checker = { enabled = true })
 require('lazy').setup({
   -- Detect tabstop and shiftwidth automatically
   -- Enable only when necessary; this messes up the
