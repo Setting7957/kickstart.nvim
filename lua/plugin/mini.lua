@@ -14,7 +14,7 @@ return {
       -- Not a fan of the default mappings slowing down the commonly-used s command.
       -- Make them at least require a <Leader> key stroke
       mappings = {
-        add = '<Leader>ca', -- [c]over around
+        add = '<Leader>cs', -- [c]over around
         delete = '<Leader>cd', -- [c]over [d]elete
         replace = '<Leader>cr', -- [c]over [r]eplace
         find = '<Leader>cf', -- [c]over [f]ind
