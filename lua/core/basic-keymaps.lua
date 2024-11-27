@@ -39,3 +39,7 @@ vim.keymap.set('c', '<C-A>', '<Home>', { desc = 'Go to the first position in the
 vim.keymap.set('c', '<C-E>', '<End>', { desc = 'Go to the last position in the line' })
 vim.keymap.set('c', '<C-F>', '<Right>', { desc = 'Move one character to the right' })
 vim.keymap.set('c', '<C-B>', '<Left>', { desc = 'Move one character to the left' })
+
+-- Paste in nvim-qt
+vim.keymap.set('n', '<C-p>', '"+p', { desc = 'Paste from system clipboard' })
+vim.keymap.set('i', '<C-p>', '<Esc>"+pa', { desc = 'Paste from system clipboard' })
