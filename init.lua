@@ -5,6 +5,7 @@
 -- see :h lua-guide-modules
 require 'core.basic-options'
 require 'core.basic-keymaps'
+require 'core.abbreviations'
 require 'core.basic-autocommands'
 
 -- Install the `lazy.nvim` plugin manager
