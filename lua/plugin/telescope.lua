@@ -56,6 +56,7 @@ return {
           },
         },
         layout_strategy = 'flex', -- switch between horizontal and vertical layouts depending on window width
+        path_display = { 'truncate' }, -- Only show the last part of filepaths when the path overflows the display
         --   initial_mode: normal  -- vim mode in which telescope starts. Default: insert
       },
       -- pickers = {}
