@@ -31,6 +31,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Avoid moving cursor to the right after toggling case
+vim.keymap.set('n', '~', 'v~', { desc = 'Paste from system clipboard' })
+
 -- Emulate bash cursor movement shortcuts in command mode
 vim.keymap.set('c', '<C-A>', '<Home>', { desc = 'Go to the first position in the line' })
 vim.keymap.set('c', '<C-E>', '<End>', { desc = 'Go to the last position in the line' })
